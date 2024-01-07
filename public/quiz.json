@@ -1,0 +1,242 @@
+[
+    {
+        "id": "01",
+        "question": "Do you confirm to be comfortable working in an environment with tight deadlines and frequent changes?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "02",
+        "question": "Do you confirm to handle unexpected challenges and uncertainties in your work?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "03",
+        "question": "When faced with conflicting priorities, do you confirm to be able to prioritize and manage your tasks?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "04",
+        "question": "In a team setting, do you confirm that it is important for you to maintain a calm and stable work environment?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "05",
+        "question": "Do you confirm to be able to adapt to changes in work processes or procedures?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "06",
+        "question": "When given repetitive tasks, do you confirm to maintain your motivation and focus?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "07",
+        "question": "Do you confirm to be patient when you are dealing with unexpected delays or disruptions in your work?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "08",
+        "question": "Do you confirm that you are comfortable with routine and predictability in your daily work tasks?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Neutral"
+    },
+    {
+        "id": "09",
+        "question": "Do you prefer a consistent and stable work routine? Rate your answer and provide reason",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "10",
+        "question": "Do you confirm that it is important for you to establish and maintain long-term relationships with your colleagues?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "11",
+        "question": "When facing tight deadlines, do you confirm to manage your stress and pressure?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "12",
+        "question": "Do you confirm to adapt well to changes in the organizational structure or team dynamics?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "13",
+        "question": "Do you confirm that you are comfortable with routine and repetitive tasks? Rate your answer and provide reason if you feel otherwise",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Neutral"
+    },
+    {
+        "id": "14",
+        "question": "Do you confirm to handle situations well where there is a lack of clear instructions or guidance? Rate your answer and explain how.",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "15",
+        "question": "When faced with conflicting opinions within a team, do you confirm to contribute to resolving the conflicts?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "16",
+        "question": "Do you confirm to approach situations with patience where you need to wait for information or decisions from others? Rate your answer and explain properly.",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "17",
+        "question": "In a team setting, do you ensure that everyone is heard and their opinions are considered? Rate your answer and explain how.",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "18",
+        "question": "Do you confirm that it is important for you to establish a consistent work routine and schedule?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    },
+    {
+        "id": "19",
+        "question": "When facing unexpected changes, do you confirm to communicate and reassure your team members?",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Strongly Agree"
+    },
+    {
+        "id": "20",
+        "question": "Do you confirm to handle situations where there is ambiguity or lack of clarity in your tasks? Rate your answer and explain how.",
+        "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+        ],
+        "answer": "Agree"
+    }
+]
