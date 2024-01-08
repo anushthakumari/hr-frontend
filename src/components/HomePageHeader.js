@@ -1,44 +1,20 @@
-import React, { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
-import { endQuiz as endQuizApi } from "../apis/quizes.apis";
-
-const TestNav = () => {
-	const { id: quizId } = useParams();
-	const [isloading, setisloading] = useState(false);
-
+const HomePageHeader = () => {
+	const { logOut } = useAuth();
 	const navigate = useNavigate();
 
-	const handleEndTest = async () => {
-		if (!window.confirm("are you sure you want to end this test?")) {
-			return;
-		}
-
-		try {
-			setisloading(true);
-
-			const d = await endQuizApi(quizId);
-
-			toast.success("Test ended!");
-
-			navigate("/");
-		} catch (error) {
-			if (error.response?.data?.message) {
-				toast.error(error.response?.data?.message);
-				return;
-			}
-
-			toast.error("something went wrong!");
-		} finally {
-			setisloading(false);
-		}
+	const handleLogOut = () => {
+		logOut();
+		navigate("/login");
 	};
 
 	return (
 		<nav className="container navbar navbar-expand-lg navbar-light bg-light">
-			<Link className="navbar-brand" to="#">
-				Attempting Test #{quizId}
+			<Link className="navbar-brand" to="/">
+				Quest
 			</Link>
 			<button
 				className="navbar-toggler"
@@ -70,14 +46,13 @@ const TestNav = () => {
 				</ul> */}
 			</div>
 			<button
-				onClick={handleEndTest}
+				onClick={handleLogOut}
 				className="btn btn-danger my-2 my-sm-0"
-				type="submit"
-				disabled={isloading}>
-				{isloading ? "Loading..." : "End Test"}
+				type="submit">
+				Log Out
 			</button>
 		</nav>
 	);
 };
 
-export default TestNav;
+export default HomePageHeader;

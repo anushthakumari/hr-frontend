@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import DataContext from "../context/dataContext";
 
+import { startQuiz as startQuizApi } from "../apis/quizes.apis";
+
 const Start = () => {
 	const { startQuiz, showStart } = useContext(DataContext);
+	const [isLoading, setisLoading] = useState(false);
 
 	const { id: quizId } = useParams();
 
@@ -25,13 +28,27 @@ const Start = () => {
 	};
 
 	const handleStart = async () => {
-		const isAcessGranted = await checkMediaAccess();
-		if (!isAcessGranted) {
-			toast.error("Please allow access to camera and audio!");
-			return;
-		}
+		try {
+			setisLoading(true);
+			const isAcessGranted = await checkMediaAccess();
+			if (!isAcessGranted) {
+				toast.error("Please allow access to camera and audio!");
+				return;
+			}
 
-		startQuiz();
+			await startQuizApi(quizId);
+
+			startQuiz();
+		} catch (error) {
+			if (error.response?.data?.message) {
+				toast.error(error.response?.data?.message);
+				return;
+			}
+
+			toast.error("something went wrong!");
+		} finally {
+			setisLoading(false);
+		}
 	};
 
 	return (
@@ -44,8 +61,9 @@ const Start = () => {
 						<h1 className="fw-bold mb-4">You are attempting Test #{quizId}</h1>
 						<button
 							onClick={handleStart}
-							className="btn px-4 py-2 bg-light text-dark fw-bold">
-							Start
+							className="btn px-4 py-2 bg-light text-dark fw-bold"
+							disabled={isLoading}>
+							{isLoading ? "Loading..." : "Start"}
 						</button>
 					</div>
 				</div>

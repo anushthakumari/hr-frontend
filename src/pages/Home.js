@@ -3,33 +3,39 @@ import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 import { getQuizes } from "../apis/quizes.apis";
+import { useAuth } from "../context/AuthProvider";
+import HomePageHeader from "../components/HomePageHeader";
 
 const Home = () => {
 	const { data, isLoading, error } = useSWR("/quiz", getQuizes);
+
+	const { firstName } = useAuth();
 
 	if (isLoading) {
 		return <h1>Loading....</h1>;
 	}
 
-	console.log(data);
-
 	return (
-		<section
-			style={{ minHeight: "100vh", width: "100%" }}
-			className="p-5 container-fluid d-flex flex-column  align-items-center text-white bg-dark min">
-			<div className="mb-5">
-				<h1 className="text-center">Hello John!!</h1>
-				<h5 className="text-center">You can attempt below test</h5>
-			</div>
+		<div>
+			<HomePageHeader />
 
-			<div className="d-flex justify-content-center align-items-center">
-				<div className="row">
-					{data.map((v) => {
-						return <Card key={v.id} id={v.id} title={v.title} />;
-					})}
+			<section
+				style={{ minHeight: "100vh", width: "100%" }}
+				className="p-5 container-fluid d-flex flex-column  align-items-center text-white bg-dark min">
+				<div className="mb-5">
+					<h1 className="text-center">Hello {firstName}!!</h1>
+					<h5 className="text-center">You can attempt below test</h5>
 				</div>
-			</div>
-		</section>
+
+				<div className="d-flex justify-content-center align-items-center">
+					<div className="row">
+						{data?.map((v) => {
+							return <Card key={v.id} id={v.id} title={v.title} />;
+						})}
+					</div>
+				</div>
+			</section>
+		</div>
 	);
 };
 

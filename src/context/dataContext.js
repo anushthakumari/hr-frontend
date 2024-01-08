@@ -13,10 +13,11 @@ export const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
 	const { id: quizId } = useParams();
 
-	const { data: questions, isLoading } = useSWR(
-		quizId ? `/quiz/${quizId}/questions` : null,
-		getQuestions
-	);
+	const {
+		data: questions,
+		isLoading,
+		error,
+	} = useSWR(quizId ? `/quiz/${quizId}/questions` : null, getQuestions);
 
 	// All Quizs, Current Question, Index of Current Question, Answer, Selected Answer, Total Marks
 	// const [quizs, setQuizs] = useState([]);
@@ -81,8 +82,8 @@ export const DataProvider = ({ children }) => {
 			setisSaving(true);
 			await saveResponse(
 				selectedAnswer
-					? { ...selectedAnswer, userId: 1 }
-					: { userId: 1, selectedOptionId: null, questionId: question.id }
+					? { ...selectedAnswer, quizId }
+					: { selectedOptionId: null, questionId: question.id, quizId }
 			);
 
 			setCorrectAnswer("");
@@ -245,6 +246,10 @@ export const DataProvider = ({ children }) => {
 			console.error("Error accessing media devices:", error);
 		}
 	}, [quizId]);
+
+	if (error) {
+		console.log(error);
+	}
 
 	return (
 		<DataContext.Provider
