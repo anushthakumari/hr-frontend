@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Quiz from "./pages/Quiz";
-import Home from "./pages/index";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
 	{

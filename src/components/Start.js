@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import DataContext from "../context/dataContext";
 
 const Start = () => {
 	const { startQuiz, showStart } = useContext(DataContext);
+
+	const { id: quizId } = useParams();
 
 	const checkMediaAccess = async () => {
 		try {
@@ -39,11 +41,11 @@ const Start = () => {
 			<div className="container">
 				<div className="row vh-100 align-items-center justify-content-center">
 					<div className="col-lg-8">
-						<h1 className="fw-bold mb-4">Get Started</h1>
+						<h1 className="fw-bold mb-4">You are attempting Test #{quizId}</h1>
 						<button
 							onClick={handleStart}
 							className="btn px-4 py-2 bg-light text-dark fw-bold">
-							Start Quiz
+							Start
 						</button>
 					</div>
 				</div>

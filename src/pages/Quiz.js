@@ -3,8 +3,9 @@ import Start from "../components/Start";
 import Quiz from "../components/Quiz";
 import Result from "../components/Result";
 import { DataProvider, DataContext } from "../context/dataContext";
+import TestNav from "../components/TestNav";
 
-function App() {
+function QuizPage() {
 	return (
 		<DataProvider>
 			<DataContext.Consumer>
@@ -15,6 +16,8 @@ function App() {
 
 					return (
 						<>
+							{showQuiz && <TestNav />}
+
 							<Start />
 
 							{showQuiz && <Quiz />}
@@ -28,4 +31,4 @@ function App() {
 	);
 }
 
-export default App;
+export default QuizPage;

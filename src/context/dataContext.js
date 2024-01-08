@@ -54,21 +54,25 @@ export const DataProvider = ({ children }) => {
 
 	// Check Answer
 	const checkAnswer = (event, selected) => {
-		if (!selectedAnswer) {
-			setSelectedAnswer({
-				selectedOptionId: selected.id,
-				questionId: question.id,
-			});
+		setSelectedAnswer({
+			selectedOptionId: selected.id,
+			questionId: question.id,
+		});
 
-			event.target.classList.add("bg-info");
+		const options = document.querySelectorAll(".option");
 
-			// if (selected === question.answer) {
-			// 	event.target.classList.add("bg-success");
-			// 	setMarks(marks + 5);
-			// } else {
-			// 	event.target.classList.add("bg-danger");
-			// }
-		}
+		options.forEach((e) => {
+			e.classList.remove("bg-info");
+		});
+
+		event.target.classList.toggle("bg-info");
+
+		// if (selected === question.answer) {
+		// 	event.target.classList.add("bg-success");
+		// 	setMarks(marks + 5);
+		// } else {
+		// 	event.target.classList.add("bg-danger");
+		// }
 	};
 
 	// Next Quesion
