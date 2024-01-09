@@ -54,19 +54,20 @@ export const DataProvider = ({ children }) => {
 	};
 
 	// Check Answer
-	const checkAnswer = (event, selected) => {
+	const checkAnswer = (selected) => {
 		setSelectedAnswer({
 			selectedOptionId: selected.id,
 			questionId: question.id,
 		});
 
 		const options = document.querySelectorAll(".option");
+		const checkBtn = document.getElementById("opt-btn-" + selected.id);
 
 		options.forEach((e) => {
 			e.classList.remove("bg-info");
 		});
 
-		event.target.classList.toggle("bg-info");
+		checkBtn.classList.toggle("bg-info");
 
 		// if (selected === question.answer) {
 		// 	event.target.classList.add("bg-success");

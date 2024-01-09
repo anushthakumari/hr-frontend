@@ -1,13 +1,14 @@
-import axios from "axios";
+import axios from "../libs/axios.lib";
 import * as secureStorage from "../utils/storage.utils";
 
-export const saveRecording = async (formData) => {
+export const saveRecording = async () => {
 	const { token } = secureStorage.getUser();
-	const fd = new FormData();
 
-	fd.append("game", "rem");
+	const formData = new FormData();
+	formData.append("field1", "value1");
+	formData.append("field2", "value2");
 
-	await axios.post("http://localhost:5100/submit", fd, {
+	await axios.post("/recordings", formData, {
 		headers: {
 			"Content-Type": "multipart/form-data",
 			Authorization: "Bearer " + token,

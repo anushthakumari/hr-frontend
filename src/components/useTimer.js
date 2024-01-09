@@ -6,35 +6,51 @@ let interval;
 
 const MAX_MINS_MSEC = 1000 * 60 * 1;
 
+let timer = MAX_MINS_MSEC;
+
+function getTimerSpanEle(params) {
+	return document.getElementById("timer-span");
+}
+
+function setTimerSpanEle(msec = 0) {
+	const timerSpanEle = getTimerSpanEle();
+	timer = msec;
+	timerSpanEle.textContent = millisecondsToTime(msec);
+}
+
 const useTimer = () => {
-	const [timer, settimer] = useState(MAX_MINS_MSEC);
 	const { nextQuestion } = useContext(DataContext);
 
 	function resetTimer() {
-		settimer(MAX_MINS_MSEC);
+		setTimerSpanEle(MAX_MINS_MSEC);
 	}
 
 	useEffect(() => {
 		interval = setInterval(() => {
-			const newState = timer - 1000;
+			const newTimer = timer - 1000;
 
-			if (newState < 0) {
+			if (newTimer < 0) {
 				nextQuestion();
-				return settimer(MAX_MINS_MSEC);
+				setTimerSpanEle(MAX_MINS_MSEC);
+				return;
 			}
 
-			settimer(newState);
+			setTimerSpanEle(newTimer);
 		}, 1000);
 
 		return () => {
 			clearInterval(interval);
 		};
-	}, [nextQuestion, timer]);
+	}, [nextQuestion]);
 
 	return {
-		timer,
 		resetTimer,
+		initialTimer: millisecondsToTime(MAX_MINS_MSEC),
 	};
 };
 
 export default useTimer;
+
+function millisecondsToTime(s) {
+	return new Date(s).toISOString().slice(14, -5);
+}

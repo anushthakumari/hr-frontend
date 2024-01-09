@@ -23,7 +23,7 @@ const VideoRecorder = () => {
 		<div>
 			<video
 				ref={videoRef}
-				style={{ width: "100%", height: "200px" }}
+				style={{ width: "100%", height: "100%" }}
 				autoPlay
 				playsInline
 				muted

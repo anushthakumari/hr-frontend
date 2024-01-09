@@ -7,7 +7,6 @@ const initialState = { isAuth: false };
 export const AuthContext = createContext(initialState);
 
 const AuthProvider = ({ children }) => {
-	console.log(getUser());
 	const [authState, setauthState] = useState(getUser());
 
 	const setAuth = useCallback((user = {}) => {
