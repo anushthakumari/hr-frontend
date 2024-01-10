@@ -8,6 +8,8 @@ import { getQuestions } from "../apis/quizes.apis";
 import { saveResponse } from "../apis/responses.apis";
 import { saveRecording } from "../apis/recordings.apis";
 
+import useAudioRecorder from "../hooks/useAudioRecorder";
+
 export const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
@@ -18,6 +20,13 @@ export const DataProvider = ({ children }) => {
 		isLoading,
 		error,
 	} = useSWR(quizId ? `/quiz/${quizId}/questions` : null, getQuestions);
+
+	const {
+		startRecording: startAudioRecording,
+		stopRecording: stopAudioRecording,
+		isRecording,
+		downloadAudio,
+	} = useAudioRecorder();
 
 	// All Quizs, Current Question, Index of Current Question, Answer, Selected Answer, Total Marks
 	// const [quizs, setQuizs] = useState([]);
@@ -51,6 +60,7 @@ export const DataProvider = ({ children }) => {
 		setShowStart(false);
 		setShowQuiz(true);
 		// saveRecording();
+		startAudioRecording();
 	};
 
 	// Check Answer
@@ -80,6 +90,7 @@ export const DataProvider = ({ children }) => {
 	// Next Quesion
 	const nextQuestion = async () => {
 		try {
+			stopAudioRecording();
 			setisSaving(true);
 			await saveResponse(
 				selectedAnswer
@@ -105,7 +116,9 @@ export const DataProvider = ({ children }) => {
 			}
 			setQuestionIndex(newIndex);
 			toast.info("Question No." + newIndex + " Saved successfully!");
+			// startAudioRecording();
 		} catch (error) {
+			console.log(error);
 			toast.error("error saving the response!");
 		} finally {
 			setisSaving(false);
@@ -135,16 +148,13 @@ export const DataProvider = ({ children }) => {
 	};
 
 	const stopRecording = useCallback(() => {
-		const formData = new FormData();
-		formData.append("game", "1"); // Replace with the actual user ID
-		// formData.append("quizId", 5 + ""); // Replace with the actual quiz ID
-		// formData.append("recording", blob);
-
-		saveRecording(formData);
+		console.log("stopping...");
+		console.log(mediaRecorderRef.current.state);
 		if (
 			mediaRecorderRef.current &&
 			mediaRecorderRef.current.state === "recording"
 		) {
+			console.log("if...");
 			mediaRecorderRef.current.stop();
 
 			// Get the MediaStream object from the video element
@@ -158,39 +168,15 @@ export const DataProvider = ({ children }) => {
 			// Set the srcObject to null to stop the camera feed
 			videoRef.current.srcObject = null;
 
-			// const formData = new FormData();
-			// formData.append("userId", "1"); // Replace with the actual user ID
-			// formData.append("quizId", 5 + ""); // Replace with the actual quiz ID
-			// // formData.append("recording", blob);
+			const blob = new Blob(recordedChunks, { type: "video/webm" });
 
-			// saveRecording(formData);
+			const formData = new FormData();
+			formData.append("quizId", quizId);
+			formData.append("recording", blob);
 
-			// const blob = new Blob(recordedChunks, { type: "video/webm" });
-
-			// // Create a FormData object
-			// const formData = new FormData();
-			// formData.append("recording", blob);
-
-			// Send the recording to the server
-			// fetch("/saveRecording", {
-			// 	method: "POST",
-			// 	body: formData,
-			// })
-			// 	.then((response) => {
-			// 		if (response.ok) {
-			// 			console.log("Recording sent to server successfully");
-			// 		} else {
-			// 			console.error(
-			// 				"Failed to send recording to server:",
-			// 				response.statusText
-			// 			);
-			// 		}
-			// 	})
-			// 	.catch((error) =>
-			// 		console.error("Error sending recording to server:", error)
-			// 	);
+			saveRecording(formData);
 		}
-	}, []);
+	}, [quizId, recordedChunks]);
 
 	const downloadRecording = () => {
 		if (recordedChunks.length === 0) {
@@ -246,7 +232,7 @@ export const DataProvider = ({ children }) => {
 		} catch (error) {
 			console.error("Error accessing media devices:", error);
 		}
-	}, [quizId]);
+	}, []);
 
 	if (error) {
 		console.log(error);

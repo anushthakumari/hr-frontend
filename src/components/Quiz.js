@@ -24,22 +24,22 @@ const Quiz = () => {
 
 	const { resetTimer, initialTimer } = useTimer();
 
-	const handleTextRecive = useCallback(
-		(text) => {
-			console.log({ text });
+	// const handleTextRecive = useCallback(
+	// 	(text) => {
+	// 		console.log({ text });
 
-			const foundOption = question?.options?.find(
-				(v) => v.text.toLowerCase() === text
-			);
+	// 		const foundOption = question?.options?.find(
+	// 			(v) => v.text.toLowerCase() === text
+	// 		);
 
-			if (foundOption) {
-				checkAnswer(foundOption);
-			}
-		},
-		[question?.options, checkAnswer]
-	);
+	// 		if (foundOption) {
+	// 			checkAnswer(foundOption);
+	// 		}
+	// 	},
+	// 	[question?.options, checkAnswer]
+	// );
 
-	useSpeechToText(handleTextRecive);
+	// useSpeechToText(handleTextRecive);
 
 	return (
 		<section
@@ -98,8 +98,7 @@ const Quiz = () => {
 												className={`option w-100 text-start btn text-white py-2 px-3 mt-3 rounded btn-dark ${
 													correctAnswer === item && "bg-success"
 												}`}
-												onClick={(event) => checkAnswer(item)}
-												disabled>
+												onClick={(event) => checkAnswer(item)}>
 												{item.text}
 											</button>
 										))}
@@ -110,6 +109,7 @@ const Quiz = () => {
 											onClick={() => {
 												resetTimer();
 												nextQuestion();
+												// stopRecording();
 											}}
 											disabled={!selectedAnswer}>
 											Next Question
@@ -133,35 +133,3 @@ const Quiz = () => {
 };
 
 export default Quiz;
-
-function millisecondsToTime(s) {
-	return new Date(s).toISOString().slice(14, -5);
-}
-
-function convertSpeechToText() {
-	var Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-	const recognition = new Recognition();
-
-	recognition.lang = "en-US";
-	recognition.continuous = true;
-	recognition.interimResults = true;
-
-	recognition.onresult = (event) => {
-		const result = event.results[event.results.length - 1];
-		const transcription = result[0].transcript.trim().toLowerCase();
-
-		console.log("User said:", transcription);
-	};
-
-	recognition.onerror = (error) => {
-		console.error("Speech recognition error:", error.error, error.message);
-	};
-
-	recognition.onend = () => {
-		// Uncomment the following line for continuous listening
-		// recognition.start();
-		console.log("Speech recognition ended. Restarting...");
-	};
-
-	recognition.start();
-}
