@@ -57,26 +57,25 @@ const Quiz = () => {
 						</Alert>
 					)}
 					<div className="row align-items-stretch">
-						<div className="col-lg-6">
+						<div className="col-lg-5">
 							<div>
 								<VideoRecorder />
 							</div>
 						</div>
-						<div className="col-lg-6" style={{ height: "auto" }}>
+						<div className="col-lg-7" style={{ height: "auto" }}>
 							{isSaving ? (
 								<h1>Loading...</h1>
 							) : (
 								<div
 									className="card p-4"
 									style={{ background: "#3d3d3d", borderColor: "#646464" }}>
-									<p>
-										<h4 className="text-danger fw-bold">
-											<span id={"timer-span"}>{initialTimer}</span>
-											{/* <span className="m-2 lead text-white">
+									<h4 className="text-danger fw-bold">
+										<span id={"timer-span"}>{initialTimer}</span>
+										{/* <span className="m-2 lead text-white">
 												Minutes is remaining for this question
 											</span> */}
-										</h4>
-									</p>
+									</h4>
+
 									<div className="d-flex justify-content-between gap-md-3">
 										<h5 className="mb-2 fs-normal lh-base">
 											{question?.question}
