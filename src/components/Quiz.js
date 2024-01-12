@@ -56,13 +56,13 @@ const Quiz = () => {
 							clicking is required. Just Say Your Answer Out Loud.
 						</Alert>
 					)}
-					<div className="row align-items-center">
-						<div className="col-lg-4">
+					<div className="row align-items-stretch">
+						<div className="col-lg-6">
 							<div>
 								<VideoRecorder />
 							</div>
 						</div>
-						<div className="col-lg-8">
+						<div className="col-lg-6" style={{ height: "auto" }}>
 							{isSaving ? (
 								<h1>Loading...</h1>
 							) : (
@@ -70,12 +70,12 @@ const Quiz = () => {
 									className="card p-4"
 									style={{ background: "#3d3d3d", borderColor: "#646464" }}>
 									<p>
-										<h2 className="text-danger fw-bold">
+										<h4 className="text-danger fw-bold">
 											<span id={"timer-span"}>{initialTimer}</span>
-											<span className="m-2 lead text-white">
+											{/* <span className="m-2 lead text-white">
 												Minutes is remaining for this question
-											</span>
-										</h2>
+											</span> */}
+										</h4>
 									</p>
 									<div className="d-flex justify-content-between gap-md-3">
 										<h5 className="mb-2 fs-normal lh-base">
@@ -98,12 +98,13 @@ const Quiz = () => {
 												className={`option w-100 text-start btn text-white py-2 px-3 mt-3 rounded btn-dark ${
 													correctAnswer === item && "bg-success"
 												}`}
-												onClick={(event) => checkAnswer(item)}>
+												onClick={(event) => checkAnswer(item)}
+												disabled>
 												{item.text}
 											</button>
 										))}
 									</div>
-									{questionIndex + 1 !== quizs.length ? (
+									{/* {questionIndex + 1 !== quizs.length ? (
 										<button
 											className="btn py-2 w-100 mt-3 bg-primary text-light fw-bold"
 											onClick={() => {
@@ -111,7 +112,7 @@ const Quiz = () => {
 												nextQuestion();
 												// stopRecording();
 											}}
-											disabled={!selectedAnswer}>
+											disabled>
 											Next Question
 										</button>
 									) : (
@@ -121,7 +122,7 @@ const Quiz = () => {
 											disabled={!selectedAnswer}>
 											Show Result
 										</button>
-									)}
+									)} */}
 								</div>
 							)}
 						</div>

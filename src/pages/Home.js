@@ -11,10 +11,6 @@ const Home = () => {
 
 	const { firstName } = useAuth();
 
-	if (isLoading) {
-		return <h1>Loading....</h1>;
-	}
-
 	return (
 		<div>
 			<HomePageHeader />
@@ -28,7 +24,13 @@ const Home = () => {
 				</div>
 
 				<div className="d-flex justify-content-center align-items-center">
-					<div className="row">
+					{isLoading ? "Loading..." : ""}
+					<div
+						className="row"
+						style={{
+							minWidth: "300px",
+							width: "30vw",
+						}}>
 						{data?.map((v) => {
 							return <Card key={v.id} id={v.id} title={v.title} />;
 						})}
@@ -43,7 +45,7 @@ export default Home;
 
 const Card = ({ title, id }) => {
 	return (
-		<div className="col-6">
+		<div className="col-12">
 			<div className="card m-2">
 				<div className="card-body">
 					<h5 className="card-title text-black">Test #{id}</h5>

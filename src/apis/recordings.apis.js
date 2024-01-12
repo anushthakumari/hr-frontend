@@ -3,30 +3,33 @@ import * as secureStorage from "../utils/storage.utils";
 
 export const saveRecording = async (fd) => {
 	const { token } = secureStorage.getUser();
+	return;
 
-	const urlecoded = new URLSearchParams(fd).toString();
+	// const urlecoded = new URLSearchParams(fd).toString();
 
-	await axios.post("/recordings/video", fd, {
-		headers: {
-			// "Content-Type": "application/x-www-form-urlencoded",
-			"Content-Type": "multipart/form-data",
-			Authorization: "Bearer " + token,
-		},
-	});
+	// await axios.post("/recordings/video", fd, {
+	// 	headers: {
+	// 		// "Content-Type": "application/x-www-form-urlencoded",
+	// 		"Content-Type": "multipart/form-data",
+	// 		Authorization: "Bearer " + token,
+	// 	},
+	// });
 };
 
 export const saveAudioRecording = async (fd) => {
 	const { token } = secureStorage.getUser();
 
-	const urlecoded = new URLSearchParams(fd).toString();
+	return;
 
-	const { data } = await axios.post("/recordings/audio", fd, {
-		headers: {
-			// "Content-Type": "application/x-www-form-urlencoded",
-			"Content-Type": "multipart/form-data",
-			Authorization: "Bearer " + token,
-		},
-	});
+	// const urlecoded = new URLSearchParams(fd).toString();
 
-	return data;
+	// const { data } = await axios.post("/recordings/audio", fd, {
+	// 	headers: {
+	// 		// "Content-Type": "application/x-www-form-urlencoded",
+	// 		"Content-Type": "multipart/form-data",
+	// 		Authorization: "Bearer " + token,
+	// 	},
+	// });
+
+	// return data;
 };

@@ -238,6 +238,8 @@ export const DataProvider = ({ children }) => {
 		console.log(error);
 	}
 
+	console.log(quizs);
+
 	return (
 		<DataContext.Provider
 			value={{

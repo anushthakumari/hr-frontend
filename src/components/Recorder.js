@@ -20,15 +20,13 @@ const VideoRecorder = () => {
 	}, [mediaRecorderRef, startRecording]);
 
 	return (
-		<div>
-			<video
-				ref={videoRef}
-				style={{ width: "100%", height: "100%" }}
-				autoPlay
-				playsInline
-				muted
-			/>
-		</div>
+		<video
+			ref={videoRef}
+			style={{ width: "100%", height: "100%" }}
+			autoPlay
+			playsInline
+			muted
+		/>
 	);
 };
 
